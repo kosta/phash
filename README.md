@@ -6,7 +6,7 @@ Are none of them shared between sites?
 
 …and none of them stored in the cloud?
 
-# If you'd like all of that try pHash. #
+## If you'd like all of that try pHash. ##
 
 ## Here's how it works: ##
 

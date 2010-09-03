@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- 
+  Licensed under terms of the WTF?! License
+  Programs licensed under the WTF?! License are so fscking simple
+  that they don't even count as a "demo" or "example" program, but
+  instead could be written by your grandma or a five-year old, respectively.
+  Do whatever dirty deeds you want with programs licensed under the WTF?!
+  license. Even something evil. I mean: WTF?!
+-->
+<html>
+  <head>
+    <title>phash - one password to hash them all</title>
+  </head>
+  </body>
+    <h1>phash</h2>
+    <h2>one password to hash them all</h2>
+    <form>
+      <p>master password:</p>
+      <p>
+        <input type="password" size="16">
+        <span id="pex"></span>
+      </p>
+      <p>website (or whatever):</p>
+      <p>
+        <input type="text" size="16">
+        <span id="tex"></span>
+      </p>
+      <p><a id="phash">phash...</a></p>
+      <p class="result"></p>
+    </form>
+  </body>
+  <script src="sha1.js"></script>
+  <script src="jquery-1.4.2.min.js"></script>
+  <script>
+    function phash() {
+      var pass = $("form input:password")[0].value,
+        site = $("form input:text")[0].value;
+      //require at least some input
+      $("pex").text(("" === pass) ? "!" : "");
+      $("tex").text(("" === pass) ? "!" : "");
+      if (("" !== pass) && ("" !== site)) {
+        //output hash
+        $(".result").text(hex_sha1(pass+site));
+      } //both have values
+    } //function phash
+    $(function() { 
+      $("#phash").attr("href", "javascript:(function(){phash();return false;})()");
+      $("#phash").text("phash!");
+    }); //$(function)
+  </script>
+</html>

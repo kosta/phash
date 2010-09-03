@@ -1,4 +1,4 @@
-Do you remember all your password?
+# Do you remember all your password? #
 
 Are they all strong enough?
 
@@ -6,9 +6,9 @@ Are none of them shared between sites?
 
 …and none of them stored in the cloud?
 
-If you'd like all of that try pHash.
+# If you'd like all of that try pHash. #
 
-Here's how it works:
+## Here's how it works: ##
 
 * Think of a master password. Something really hard to crack. 
   Like "Tw5s&n1gZj!".
@@ -31,7 +31,7 @@ it can't tear you down.
 
 Nothing is stored in the cloud. It all happens in the browser. 
 
-Ok, so how does it work (technically)?
+## Ok, so how does it work (technically)? ##
 
 We simply concatenate the master password and the site
 

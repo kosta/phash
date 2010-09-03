@@ -9,7 +9,12 @@
 -->
 <html>
   <head>
+    <meta name="viewport" content="user-scalable=no, width=device-width" />
     <title>phash - one password to hash them all</title>
+    <style type="text/css">
+        h1 { }
+        span { color: red; font-weight: bold; }
+    </style>
   </head>
   </body>
     <h1>phash</h2>
@@ -32,20 +37,27 @@
   <script src="sha1.js"></script>
   <script src="jquery-1.4.2.min.js"></script>
   <script>
-    function phash() {
+    function check() {
       var pass = $("form input:password")[0].value,
-        site = $("form input:text")[0].value;
+      site = $("form input:text")[0].value;
       //require at least some input
-      $("pex").text(("" === pass) ? "!" : "");
-      $("tex").text(("" === pass) ? "!" : "");
-      if (("" !== pass) && ("" !== site)) {
+      $("#pex").text(("" === pass) ? "!" : "");
+      $("#tex").text(("" === site) ? "!" : "");
+      return [("" !== pass) && ("" !== site),
+        pass, site];
+    }
+    function phash() {
+      var a = check();
+      if (a[0]) {
         //output hash
-        $(".result").text(hex_sha1(pass+site));
+        $(".result").text(hex_sha1(a[1]+a[2]));
       } //both have values
     } //function phash
     $(function() { 
       $("#phash").attr("href", "javascript:(function(){phash();return false;})()");
       $("#phash").text("phash!");
+      $("form input:password").change(check);
+      $("form input:input").change(check);
     }); //$(function)
   </script>
 </html>

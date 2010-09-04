@@ -6,7 +6,7 @@ Are none of them shared between sites?
 
 …and none of them stored in the cloud?
 
-## If you'd like all of that try pHash. ##
+/If you'd like all of that try pHash./
 
 ## Here's how it works: ##
 
@@ -36,6 +36,7 @@ Nothing is stored in the cloud. It all happens in the browser.
 We simply concatenate the master password and the site
 
 If you need your password but can't access it's website, simply use 
+
   for linux:
     echo -n 'masterpasswordsite' | sha1sum
   for mac os x:
@@ -45,6 +46,6 @@ If you need your password but can't access it's website, simply use
  
 Of course, you need to replace "masterpasswordsite" with your master password and
 site name (no space in between). Oh and don't forget to 
-  history -c
-  rm ~/.bash_history
+    history -c
+    rm ~/.bash_history
 afterwards. (Non-bash users: You probably know what to do. If not, ask Google)

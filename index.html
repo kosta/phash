@@ -12,30 +12,44 @@
     <meta name="viewport" content="user-scalable=no, width=device-width" />
     <title>phash - one password to hash them all</title>
     <style type="text/css">
-        h1 { font-family: sans-serif; text-align: center }
-        h3 { font-family: sans-serif; text-align: center; color: #555; }
-        p { font-family: sans-serif }
-        .result { font-weight: bold }
-        span { color: red; font-weight: bold; }
+      .phash { font-size: xx-large; font-weight: bold; font-size: x-large }
+      a { text-decoration: none; }
+      .header { color: #555; margin: 0; padding: 0; font-size: x-large }
+      .result { font-weight: bold; border: 0px; font-family: monospace; text-color: blue; 
+        text-align: center; width: 95%; max-width: 310px; background-color: #ddd; }
+      span { color: red; font-weight: bold; }
+      body { font-family: sans-serif; text-align: center; margin: 0; padding: 0; overflow: hidden }
+      .info { font-size: small; }        
     </style>
   </head>
-  </body>
-    <h1>phash</h2>
-    <h3>one password to hash them all</h3>
-    <form>
-      <p>master password:</p>
+  <body>
+      <div class=header>
+        one password<br>
+        to hash them all
+      </div>
+      <form>
+        <div class=f>
+          <p>
+            master password:<br>
+            <input type="password" size="16">
+            <span id="pex"></span><br>
+          </p>
+          <p>
+            website (or whatever):<br>
+            <input type="text" size="16">
+            <span id="tex"></span>
+          </p>
+        <a class="phash" href="#">phash...</a>
+      </form>
       <p>
-        <input type="password" size="16">
-        <span id="pex"></span>
-      </p>
-      <p>website (or whatever):</p>
-      <p>
-        <input type="text" size="16">
-        <span id="tex"></span>
-      </p>
-      <p><a id="phash">phash...</a></p>
-      <p class="result"></p>
-    </form>
+        <div>
+          Your new password:<br>
+          <input class="result" type="text" id="result"></input>
+        </div>
+      </p>      
+      <div class="info">
+        <a href="http://github.com/kosta/phash">more info</a>
+      </div>
   </body>
   <script src="sha1.js"></script>
   <script src="jquery-1.4.2.min.js"></script>
@@ -53,14 +67,16 @@
       var a = check();
       if (a[0]) {
         //output hash
-        $(".result").text(hex_sha1(a[1]+a[2]));
+        $("#result").val(hex_sha1(a[1]+a[2]));
       } //both have values
+      return false;
     } //function phash
     $(function() { 
-      $("#phash").attr("href", "javascript:(function(){phash();return false;})()");
-      $("#phash").text("phash!");
+      $(".phash").attr("href", "javascript:(function(){phash();return false;})()");
+      $(".phash").text("phash!");
       $("form input:password").change(check);
       $("form input:input").change(check);
+      $("form").submit(phash);
     }); //$(function)
   </script>
 </html>

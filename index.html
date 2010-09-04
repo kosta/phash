@@ -13,7 +13,7 @@
     <meta name="viewport" content="user-scalable=no, width=device-width" />
     <title>phash</title>
     <style type="text/css">
-      .phash { font-size: xx-large; font-weight: bold; font-size: x-large }
+      .phash { font-size: xx-large; font-weight: bold; font-size: x-large; border: 0px; background-color: white; color: blue; }
       a { text-decoration: none; }
       .header { color: #555; margin: 0; padding: 0; font-size: x-large }
       .result { font-weight: bold; border: 0px; font-family: monospace; text-color: blue; 
@@ -28,7 +28,7 @@
         one password<br>
         to hash them all
       </div>
-      <form onSumbit="javascript:(function(){return false;})()">
+      <form>
         <div class=f>
           <p>
             master password:<br>
@@ -40,19 +40,19 @@
             <input type="text" size="16">
             <span id="tex" class="red"></span>
           </p>
-        <a class="phash" href="#">phash...</a>
+        <input class="phash" type=submit value="phash!" />
       </form>
-      <p>
-        <div>
-          Your new password:<br>
-          <input class="result" type="text" id="result"></input><br>
-          <input type="range" min="10" max="40" value="40" id="range" disabled/>
-          <span id="rangec"></span>
-        </div>
-      </p>      
+      <div>
+        Your new password:<br>
+        <input class="result" type="text" id="result" readonly/><br>
+        <input type="range" min="10" max="40" value="40" id="range" disabled/>
+        <span id="rangec"></span>
+      </div>   
       <div class="info">
-        <a href="http://github.com/kosta/phash">more info</a><br>
-        Got Feedback? Tell <a href="http://twitter.com/alicelikesbob">@alicelikesbob</a> on twitter
+        <p>
+          <a href="http://github.com/kosta/phash">more info / fork me on github</a><br>
+          Got Feedback? Tell <a href="http://twitter.com/alicelikesbob">@alicelikesbob</a> on twitter
+        </p>
       </div>
   </body>
   <script src="sha1.js"></script>
@@ -78,8 +78,9 @@
           if (a1 !== '' && a2 !== '') {
             //output hash
             value = hex_sha1(a1+a2);
-            $("#result").val(value).focus().select();
+            $("#result").attr("readonly", false).val(value).focus().select();
             $("#range").attr("disabled", false);
+            phash.get();
           } //both have values
           return false;
         }, //set()
@@ -90,10 +91,9 @@
       }
     })(); //phash
     $(function() { 
-      $(".phash").attr("href", "javascript:(function(){phash.set();return false;})()");
-      $(".phash").text("phash!");
       $("form input:password").change(check1);
       $("form input:input").change(check2);
+      $("form").submit(phash.set);
       $("#range").change(function() {
         $("#rangec").text(this.value);
         $("#result").val(phash.get(this.value)).focus().select();

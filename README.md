@@ -49,3 +49,7 @@ site name (no space in between). Oh and don't forget to
     history -c
     rm ~/.bash_history
 afterwards. (Non-bash users: You probably know what to do. If not, ask Google)
+
+## I want your feedback! ##
+
+Tell @alicelikesbob on twitter

@@ -143,5 +143,12 @@
       }
       return ret;
     }
+    
+    //reload offline app if possible
+    if (window.applicationCache) {
+      window.applicationCache.addEventListener("updateready", function() {s
+          window.applicationCache.swapCache();
+        }, false);
+    }
   </script>
 </html>

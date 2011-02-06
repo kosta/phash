@@ -28,7 +28,7 @@
         one password<br>
         to hash them all
       </div>
-      <form>
+      <form action=post>
         <div class=f>
           <p>
             master password:<br>
@@ -76,7 +76,10 @@
     var phash = (function() {
       var value = '';
       return { 
-        set: function() {
+        set: function(event) {
+          if (event && event.preventDefault) {
+            event.preventDefault();
+          }
           var a1 = check1();
           var a2 = check2();
           if (a1 !== '' && a2 !== '') {
@@ -86,7 +89,7 @@
             } else {
               value = ascii85(rstr_hmac_sha1(str2rstr_utf8(a1), str2rstr_utf8(a2)));
             }
-            $("#result").attr("readonly", false).val(value).focus().select();
+            $("#result").attr("readonly", false).val(value.substr(0, 20)).focus().select();
             $("#range").attr("disabled", false);
             phash.get();
           } //both have values
@@ -100,7 +103,7 @@
     })(); //phash
     function rangelen() {
       var len = ($('form input:radio:checked').val() == "hex") ? 40 : 25;
-      $("#range").attr('max', len).attr('value', len);
+      $("#range").attr('max', len).attr('value', 20);
     }
     $(function() { 
       $("form input:password").change(check1);
@@ -124,7 +127,7 @@
         var mod = 85, i, c, ret = '';
         for(i = 0; i < 5; ++i) {        
           c = x % mod;
-          console.log([c, String.fromCharCode(c*85/mod+33)]);
+          //console.log([c, String.fromCharCode(c*85/mod+33)]);
           ret = String.fromCharCode( c*85 / mod +33) + ret;
           x -= c;
           mod *= 85;

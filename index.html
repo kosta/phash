@@ -80,7 +80,8 @@
       return ret;
     } //check1
     function check2() {
-      var ret = $("form input:text")[0].value;
+      var ret = $("form input:text")[0].value.toLocaleLowerCase();
+      $("form input:text")[0].value = ret;
       $("#tex").text(("" === ret) ? "!" : "");
       return ret;
     }

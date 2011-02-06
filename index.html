@@ -28,7 +28,7 @@
         one password<br>
         to hash them all
       </div>
-      <form action=post>
+      <form method=post>
         <div class=f>
           <p>
             master password:<br>
@@ -91,7 +91,8 @@
             }
             $("#result").attr("readonly", false).val(value.substr(0, 20)).focus().select();
             $("#range").attr("disabled", false);
-            phash.get();
+            $("#rangec").text("20");
+            rangelen();
           } //both have values
           return false;
         }, //set()

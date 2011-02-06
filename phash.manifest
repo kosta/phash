@@ -2,3 +2,5 @@ CACHE MANIFEST
 index.html
 jquery-1.4.2.min.js	
 sha1.js
+names.js
+names-lib.js

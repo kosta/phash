@@ -36,6 +36,10 @@
             <span id="pex" class="red"></span><br>
           </p>
           <p>
+            mnemotic:<br>
+            <span id="mnemotic" style="color:#222"><br>
+          </p>          
+          <p>
             website (or whatever):<br>
             <input type="text" size="16">
             <span id="tex" class="red"></span>
@@ -59,13 +63,20 @@
         </p>
       </div>
   </body>
-  <script src="sha1.js"></script>
   <script src="jquery-1.4.2.min.js"></script>
+  <script src="sha1.js"></script>
+  <script src="names.js"></script>
+  <script src="names-lib.js"></script>    
   <script>
     function check1() {
       var ret = $("form input:password")[0].value;
       //require at least some input
       $("#pex").text(("" === ret) ? "!" : "");
+      $("#mnemotic").text(names.triple_to_string(
+          names.generate_triples(
+            rstr_sha1(str2rstr_utf8(ret))
+          )[0]
+        ));
       return ret;
     } //check1
     function check2() {
